@@ -1,0 +1,101 @@
+nginx:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-nginxplus:1.4.0.27
+  restart: always
+  privileged: true
+  ports:
+  - "9500:9500"
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"  
+  environment:
+  - HOST_IP=HOST_IP_MACRO
+  - MONITOR_PORT=8475
+  volumes:
+  - /opt/etcd/config:/opt/etcd/config
+  - /root/tmp:/tmp
+  - /var/log/nginx:/var/log/nginx
+  
+nginxapp:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-nginx-app-monitor:1.2.0.16
+  stdin_open: true
+  tty: true
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"  
+  ports:
+   - "7504:7504"
+  environment:
+   LISTEN_PORT: 7504 
+   APP_OBSERVER_PORT: 8477 
+   HOST_IP: HOST_IP_MACRO
+   HOST_NAME: HOST_NAME_MACRO
+  volumes:
+   - /usr/sbin:/usr/local/sbin
+   - /var/log/app_monitor/nginx:/tmp
+   - /var/opt/app-monitor-nginx/perf_monitor/logs:/opt/perf_monitor/logs
+   - /var/opt/app-monitor-nginx/status_monitor/logs:/opt/status_monitor/logs
+
+appObserverNginx:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-app-observer:2.0.0.3
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"  
+  ports:
+   - "8475:8475"
+   - "8477:8477"
+  environment:
+   SECURE_PORT: 8475
+   NON_SECURE_PORT: 8477
+   PRODUCT_NAME: ACP-LBAAS
+   APP_WEBSERVICE_FQDN: HOST_IP_MACRO
+   APP_WEBSERVICE_PORT: 7504
+  volumes:
+   - /var/opt/app-observer-nginx/config:/opt/app-observer/conf/external
+   - /var/opt/app-observer-nginx/logs:/opt/app-observer/logs
+
+logstashforwarder:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-logstash-forwarder:2.0.0.4
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"  
+  environment:
+   LS_HEAP_SIZE: 1g
+   CA_CERT_LOCATION: /etc/elk-keys/ca.pem
+   ES_HOST: ELK_DNSNAME_MACRO
+   NODE_NAME: HOST_IP_MACRO
+  volumes:
+   - /var/opt/logstash-forwarder/log:/var/log/supervisor
+   - /var/opt/logstash-forwarder/conf:/etc/logstash-forwarder
+   - /var/opt/logstash-forwarder/keys:/etc/elk-keys
+   - /etc/localtime:/etc/localtime:ro
+   - /var/opt/:/var/opt/
+  volumes_from:
+   - nginx    
+
+keymanager:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-keymanager:1.0.0.9
+  stdin_open: true
+  tty: true
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"  
+  environment:
+  - HOST_IP=HOST_IP_MACRO
+  - HOST_NAME=HOST_NAME_MACRO
+  volumes:
+   - /var/log:/tmp
+  volumes_from:
+  - nginx

@@ -1,0 +1,7 @@
+[template]
+src = "nginx.conf.tmpl"
+dest = "/tmp/nginx.conf"
+keys = [
+  "/lbaas",
+]
+reload_cmd = "sh /etc/confd/updateConfig.sh >> /tmp/confd.log"

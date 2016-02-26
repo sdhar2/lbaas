@@ -1,0 +1,7 @@
+---
+- name: Deploy lbaas service on lbaas 
+  hosts: haproxy
+  sudo: yes
+  roles:
+     - HAProxy
+ 

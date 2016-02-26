@@ -1,0 +1,29 @@
+! Configuration File for keepalived nginx
+! Copyright 2015, Arris Inc
+
+vrrp_script chk_nginx {
+	script "/usr/sbin/check_generic nginx:"
+	interval 2
+	weight 2
+}
+
+vrrp_instance NGINX_1 {
+    state MASTER
+    interface eth0
+    virtual_router_id VRID_MACRO
+    priority PRIORITY_MACRO
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    track_script {
+	chk_nginx
+    }
+    virtual_ipaddress {
+        VIRTUAL_LBAAS_IPADDRESS1 dev eth0
+        VIRTUAL_LBAAS_IPADDRESS2 dev eth1
+        VIRTUAL_LBAAS_IPADDRESS3 dev eth2
+    }
+}
+

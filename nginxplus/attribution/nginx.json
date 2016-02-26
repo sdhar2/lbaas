@@ -1,0 +1,16 @@
+{
+    "ossAttribution": {
+        "product": "NginxPlus",
+        "productVersion": "1.4.0.2",
+        "entries": [
+            {
+                "component": "NginxPlus",
+                "componentVersion": "1.7.3",
+                "componentUrl": "http://nginx.org",
+                "license": "Commercial plus included Open Source",
+                "licenseUrl": "licenses/nginx-plus-license.txt",
+                "notice": "Follow license URL for Open Source information"
+            }
+        ]
+    }
+}

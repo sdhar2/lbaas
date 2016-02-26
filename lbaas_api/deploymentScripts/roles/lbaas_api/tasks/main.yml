@@ -1,0 +1,48 @@
+---
+    - name: copy the lbaas_api compose file
+      copy: src=lbaas-api-compose.yml dest=/arris/compose/lbaas-api-compose.yml mode=755
+    - name: look up the ELK DNS name
+      shell: nslookup elk | grep "elk" | awk '{ print $2}'
+      register: nslookup
+    - name: update ELK DNS name on compose file
+      command: sed -i "s/ELK_DNSNAME_MACRO/{{nslookup.stdout}}/g" /arris/compose/lbaas-api-compose.yml
+    - name: update the host ip on compose file
+      command: sed -i "s/HOST_IP_MACRO/{{ansible_eth0.ipv4.address}}/g" /arris/compose/lbaas-api-compose.yml
+    - name: update the host name on compose file
+      command: sed -i "s/HOST_NAME_MACRO/{{ansible_hostname}}/g" /arris/compose/lbaas-api-compose.yml
+    - name: Grab iptables rules for survey of firewall (INPUT rules only)
+      shell: iptables -n --list INPUT
+      register: iptablesinputtablerules
+      always_run: yes
+    - name: punch the hole in the firewall for lbaas_api 
+      command: iptables -I INPUT -p tcp --dport {{ item }} -j ACCEPT
+      when: iptablesinputtablerules.stdout.find("dpt:{{ item }}") == -1
+      with_items:
+         - 8975
+         - 8977
+         - 7608
+         - 9102
+      notify: save iptables   
+    - name: kill the old status checker script if there is one
+      shell: killall api_status_checker.sh
+      ignore_errors: true
+    - name: start status checker script
+      shell: nohup /usr/sbin/api_status_checker.sh  &
+    - name: check if lbaas_api docker container is running
+      shell: docker ps | grep compose_lbaasapi_1
+      register: ps_result
+      ignore_errors: yes
+    - name: stop lbaas_api docker container
+      shell: docker stop compose_lbaasapi_1
+      when: ps_result.rc == 0
+      register: stop
+      changed_when: stop.stdout
+    - name: rm lbaas_api docker container
+      shell: docker rm compose_lbaasapi_1
+      when: ps_result.rc == 0 and stop.stdout
+      register: remove
+      changed_when: remove.stdout
+    - name: pull the docker images from compose file
+      command: docker-compose -f /arris/compose/lbaas-api-compose.yml pull --allow-insecure-ssl
+    - name: start the compose file
+      command: docker-compose -f /arris/compose/lbaas-api-compose.yml up -d

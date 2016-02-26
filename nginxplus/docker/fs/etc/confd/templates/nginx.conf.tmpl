@@ -1,0 +1,4 @@
+{{range $dir := lsdir "/lbaas"}}
+    {{$subdir := printf "/lbaas/%s" $dir}} lbaas=[{{range $key := ls $subdir}} {{$keylocation := printf "%s/%s" $subdir $key}} {{printf "{%s" $keylocation}} {{getv (printf "%s" $keylocation)}} false } {{end}}] 
+{{end}}
+

@@ -1,0 +1,34 @@
+---
+- name: Restart nginx service on nginx/lbaas Cluster
+  hosts: lbaas
+  sudo: yes
+  sudo_user: root
+
+  tasks:
+  - name: stop the nginx compose file
+    command: docker-compose -f /arris/compose/nginx-compose.yml stop
+    async: 60
+    poll: 10
+
+  - name: rm nginx
+    command: docker-compose -f /arris/compose/nginx-compose.yml rm --force
+    async: 60
+    poll: 10
+
+  - name: kill confd script on 1st host
+    shell: pkill -9 startConfd.sh;dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    when: inventory_hostname  == "{{ play_hosts[0] }}"
+
+  - name: start the compose file on first host
+    command: docker-compose -f /arris/compose/nginx-compose.yml up -d --no-recreate
+    when: inventory_hostname  == "{{ play_hosts[0] }}"
+  - wait_for: timeout=30
+
+  - name: kill confd script on 2nd host
+    shell: pkill -9 startConfd.sh;dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    when: inventory_hostname  == "{{ play_hosts[1] }}"
+
+  - name: start the compose file on second host
+    command: docker-compose -f /arris/compose/nginx-compose.yml up -d --no-recreate
+    when: inventory_hostname  == "{{ play_hosts[1] }}"
+  - wait_for: timeout=30

@@ -1,0 +1,24 @@
+{
+    "ossAttribution": {
+        "product": "haproxy-load-balancer",
+        "productVersion": "1.3.0.2",
+        "entries": [
+            {
+                "component": "HaProxy",
+                "componentVersion": "1.4.24",
+                "componentUrl": "http://powerstack.org/haproxy",
+                "license": "GPLv2+",
+                "licenseUrl": "licenses/haproxy-license-2.0.txt",
+                "notice": ""
+            },
+            {
+                "component": "Rsyslog",
+                "componentVersion": "5.8.10",
+                "componentUrl": "http://www.rsyslog.com/doc/licensing.html",
+                "license": "GPLv3",
+                "licenseUrl": "licenses/rsyslog-license.txt",
+                "notice": ""
+            }
+        ]
+    }
+}

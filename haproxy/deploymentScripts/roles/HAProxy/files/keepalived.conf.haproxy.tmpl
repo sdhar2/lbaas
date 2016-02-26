@@ -1,0 +1,29 @@
+! Configuration File for keepalived haproxy
+! Copyright 2015, Arris Inc
+
+vrrp_script chk_haproxy {
+    script "/usr/sbin/check_generic haproxy"
+    interval 2
+    weight 2
+}
+
+vrrp_instance haproxy_instance_1 {
+    interface eth0
+    state MASTER
+    virtual_router_id VRID_MACRO
+    priority PRIORITY_MACRO
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 1111
+    }
+    track_script {
+        chk_haproxy 
+    }
+    virtual_ipaddress {
+        VIRT_IP_INTERNODE/24 dev eth0
+        VIRT_IP_CLIENT/24 dev eth1
+        VIRT_IP_EXTERNAL/24 dev eth2
+    }
+}
+

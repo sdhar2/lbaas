@@ -1,0 +1,7 @@
+[template]
+src = "nginxconfig.tmpl"
+dest = "/tmp/nginxconfig.conf"
+keys = [
+  "/config",
+]
+reload_cmd = "sh /usr/sbin/updateConfig.sh >> /var/log/nginxconfd.log"

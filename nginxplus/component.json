@@ -1,0 +1,9 @@
+[
+	{
+        "componentName":    "nginxplus",
+        "componentDescr":   "ARRIS Cloud Platform: NginxPlus",
+        "containerName":    "arrs/arrs-cloud-base-nginxplus",
+        "componentVersion": "2.0.0.0",
+        "installFileBase":  "arrs-cloud-loadbalancer-nginxplus"
+	}
+]

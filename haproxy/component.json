@@ -1,0 +1,9 @@
+[
+	{
+        "componentName":    "HAProxy",
+        "componentDescr":   "ARRIS Cloud Platform: HAProxy",
+        "containerName":    "arrs/arrs-cloud-base-haproxy",
+        "componentVersion": "2.0.0.0",
+        "installFileBase":  "arrs-cloud-loadbalancer-haproxy"
+	}
+]

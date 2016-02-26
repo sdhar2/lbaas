@@ -1,0 +1,24 @@
+[
+{
+	 "Static":
+	  [
+	    {
+		"key": "/config/advisor/haproxy@$VarHostName",
+		"value": "$VarHostIP:8775"    
+	    },
+	    {
+        "key": "/productGroups/maas/haproxy@$VarHostName",
+        "value": "$VarHostIP"
+        },
+        {
+        "key": "/productGroups/laas/haproxy@$VarHostName",
+        "value": "$VarHostIP"
+        }
+	  ],
+	  "KeepAlive" :
+	  [
+	    {
+	    }
+	  ]
+	}
+] 

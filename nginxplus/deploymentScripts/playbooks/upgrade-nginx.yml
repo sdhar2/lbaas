@@ -1,0 +1,76 @@
+---
+- name: Upgrade nginx service on nginx/lbaas Cluster
+  hosts: lbaas
+  sudo: yes
+  sudo_user: root
+
+  tasks:
+  - name: copy the nginx compose file
+    copy: src=roles/nginx/files/nginx-compose.yml dest=/arris/compose/nginx-compose.yml mode=0755
+  - name: copy the nginx compose template file
+    copy: src=roles/nginx/files/nginx-compose.yml.template dest=/arris/compose/nginx-compose.yml.template mode=0755
+    
+  - name: update the host ip on compose file
+    command: sed -i "s/HOST_IP_MACRO/{{ansible_eth0.ipv4.address}}/g" /arris/compose/nginx-compose.yml
+  - name: update the host name on compose file
+    command: sed -i "s/HOST_NAME_MACRO/{{ansible_hostname}}/g" /arris/compose/nginx-compose.yml
+    
+ 
+  - name: update the host ip on compose file
+    command: sed -i "s/HOST_IP_MACRO/{{ansible_eth0.ipv4.address}}/g" /arris/compose/nginx-compose.yml.template
+  - name: update the host name on compose file
+    command: sed -i "s/HOST_NAME_MACRO/{{ansible_hostname}}/g" /arris/compose/nginx-compose.yml.template
+    
+  - name: look up the ELK DNS name
+    shell: nslookup elk | grep "elk" | awk '{ print $2}'
+    register: nslookup
+  - name: update ELK DNS name on compose file
+    command: sed -i "s/ELK_DNSNAME_MACRO/{{nslookup.stdout}}/g" /arris/compose/nginx-compose.yml
+  - name: update ELK DNS name on compose template file
+    command: sed -i "s/ELK_DNSNAME_MACRO/{{nslookup.stdout}}/g" /arris/compose/nginx-compose.yml.template      
+  - name: pull nginx containers
+    command: docker-compose -f /arris/compose/nginx-compose.yml pull --allow-insecure-ssl
+    async: 180
+  
+  - name: stop the nginx compose file
+    command: docker-compose -f /arris/compose/nginx-compose.yml stop
+    async: 60
+    poll: 10
+
+  - name: rm nginx
+    command: docker-compose -f /arris/compose/nginx-compose.yml rm --force
+    async: 60
+    poll: 10
+
+  - name: update nginx ports
+    shell: /usr/sbin/nginxConfig.sh
+    when: inventory_hostname  == "{{ play_hosts[0] }}"
+    ignore_errors: true
+
+  - name: kill confd script on 1st host
+    shell: pkill -9 startConfd.sh;dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    when: inventory_hostname  == "{{ play_hosts[0] }}"
+
+  - name: start the external confd
+    shell: dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    when: inventory_hostname  == "{{ play_hosts[0] }}"
+
+  - name: update nginx ports
+    shell: /usr/sbin/nginxConfig.sh
+    when: inventory_hostname  == "{{ play_hosts[1] }}"
+    ignore_errors: true
+
+  - name: kill confd script on 2nd host
+    shell: pkill -9 startConfd.sh;dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    when: inventory_hostname  == "{{ play_hosts[1] }}"
+
+  - name: start the external confd
+    shell: dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    when: inventory_hostname  == "{{ play_hosts[1] }}"
+
+  - name: kill the old status checker script if there is one
+    shell: killall nginx_status_checker.sh
+    ignore_errors: true
+
+  - name: start status checker script
+    shell: nohup /usr/sbin/nginx_status_checker.sh  &

@@ -1,0 +1,1 @@
+lbaas=[{{range $key := ls "/config/lbaas/ports"}} {{printf "{/config/lbaas/ports/%s" $key}} {{getv (printf "/config/lbaas/ports/%s" $key)}} false } {{end}}]

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<performanceDataQueries id="com.ccadllc.firebird.advisor.server.acp.lbaas.performance.monitor">
+  <categories>
+    <category humanizedName="ACP-LBAAS Data : Connection Statistics" name="acp_lbaas_connection_statistics" priority="999"/>
+    <category humanizedName="ACP-LBAAS Data : Upstream Statistics" name="acp_lbaas_upstream_statistics" priority="999"/>
+    <category humanizedName="ACP-LBAAS Data : Request Statistics" name="acp_lbaas_request_statistics" priority="999"/>
+  </categories>
+  <monitor id="acp_lbaas_1" name="Performance Monitor for ACP-LBAAS Connection Data">
+    <query id="acp_lbaas_1_1" name="Query for ACP-LAAS Connection Statistics" pollingRate="5 minutes">
+      <queryComponent id="ac3b158b-bc47-40ad-8992-856b1edec4fe">
+        <namedQuery includeFor="ACP-LBAAS">ConnectionData</namedQuery>
+        <dataItems>
+          <compositeDataItem cardinality="scalar" categories="acp_lbaas_connection_statistics" name="ConnectionStatistics" system="false" wildcardGroup="false">
+            <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%.0f" humanizedName="Active connections" name="ConnectionsActive" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+          </compositeDataItem>
+        </dataItems>
+      </queryComponent>
+    </query>
+  </monitor>
+  <monitor id="acp_lbaas_2" name="Performance Monitor for ACP-LBAAS Upstream Data">
+    <query id="acp_lbaas_2_1" includeFor="ACP-LBAAS" name="ACP-LBAAS Upstream Statistics" pollingRate="5 minutes">
+      <queryComponent categories="acp_lbaas_upstream_statistics" id="8738e5c1-e758-4ae1-918c-6cd3e73cdf28">
+        <namedQuery>UpstreamData</namedQuery>
+        <dataItems>
+          <compositeDataItem cardinality="array" name="UpstreamData" system="false" wildcardGroup="true">
+            <simpleDataItem cardinality="scalar" categoryQualifier="true" dataType="string" humanizedName="UpstreamType" name="Type" storeHistory="false" system="false" wildcard="true" wildcardGroup="false"/>
+            <compositeDataItem cardinality="array" name="UpstreamServerData" system="false" wildcardGroup="true">
+              <simpleDataItem cardinality="scalar" categoryQualifier="true" dataType="string" humanizedName="Server" name="Server" storeHistory="false" system="false" wildcard="true" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="Req per sec" name="RequestsPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="1xx Resp per sec" name="Responses1xxPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="2xx Resp per sec" name="Responses2xxPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="3xx Resp per sec" name="Responses3xxPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="4xx Resp per sec" name="Responses4xxPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="5xx Resp per sec" name="Responses5xxPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.0f" humanizedName="Fail Count" name="FailCount" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+              <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.0f" humanizedName="Unavailable Count per sec" name="UnavailableCount" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+            </compositeDataItem>
+          </compositeDataItem>
+        </dataItems>
+      </queryComponent>
+    </query>
+  </monitor>
+  <monitor id="acp_lbaas_3" name="Performance Monitor for ACP-LBAAS Request Data">
+    <query id="acp_lbaas_3_1" name="Query for ACP-LBAAS Request Statistics" pollingRate="5 minutes">
+      <queryComponent id="ac4b158b-bc48-40ad-8992-856b1edec5fe">
+        <namedQuery includeFor="ACP-LBAAS">RequestData</namedQuery>
+        <dataItems>
+          <compositeDataItem cardinality="scalar" categories="acp_lbaas_request_statistics" name="RequestStatistics" system="false" wildcardGroup="false">
+            <simpleDataItem cardinality="scalar" categoryQualifier="false" dataType="numeric" format="%,.2f" humanizedName="Requests per sec" name="RequestsPerSecond" storeHistory="true" system="false" wildcard="false" wildcardGroup="false"/>
+          </compositeDataItem>
+        </dataItems>
+      </queryComponent>
+    </query>
+  </monitor>
+</performanceDataQueries>

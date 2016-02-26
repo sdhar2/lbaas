@@ -1,0 +1,7 @@
+---
+- name: Deploy lbaas_api service on lbaas 
+  hosts: lbaas
+  sudo: true
+  sudo_user: root
+  roles:
+     - lbaas_api

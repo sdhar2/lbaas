@@ -1,0 +1,16 @@
+[
+{
+	 "Static":
+	  [
+	    {
+		"key": "/config/advisor/lbaas_api@$VarHostName",
+		"value": "$VarHostIP:8975"
+	    }
+	  ],
+	  "KeepAlive" :
+	  [
+	    {
+	    }
+	  ]
+	}
+] 

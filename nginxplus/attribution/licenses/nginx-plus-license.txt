@@ -1,0 +1,411 @@
+
+The following is the NGINX+ product license, and open source software included in the NGINX+ product
+
+Copyright (C) 2002-2014 Igor Sysoev
+Copyright (C) 2011-2014 Nginx, Inc.
+All rights reserved.
+
+
+NGINX LICENSE AGREEMENT
+
+This Nginx License Agreement ("Agreement") is a legal agreement between you
+(the "End User") and Nginx, Inc. ("NGINX") for the NGINX software
+(the "Software") licensed to End User hereunder and supplied to End User.
+The term Software includes any APIs, software modules, and any associated
+materials and "online" or electronic documentation.  This Agreement applies
+to End User’s use of the Software but it shall be superseded by any signed
+agreement between End User and NGINX concerning the Software.
+
+1. Software license
+
+Notwithstanding any reference to "sale" or "purchase", the Software is
+licensed, not sold.  Subject to the terms and conditions of this Agreement,
+NGINX grants End User a non-exclusive, non-transferable right to access and
+use the Software as part of the web hosting services for End User's internal
+use ("Authorized Use") in object form in the products, versions, and number
+of installed instances as purchased from NGINX.
+
+2. Limitations
+
+2.1. Restrictions.  End User shall not itself, or through any parent,
+subsidiary, affiliate, agent or other third party: (a) sell, lease, license,
+distribute, sublicense or otherwise transfer in whole or in part, the
+Software to a third party; (b) decompile, disassemble, translate, reverse
+engineer or otherwise attempt to derive source code from the Software except
+to the limited extent, if any, that applicable law permits such acts
+notwithstanding any contractual prohibitions, provided, however, before
+End User exercises any rights that End User believes to be entitled to based on
+mandatory law, End User shall provide NGINX with thirty (30) days prior
+written notice and provide all reasonably requested information to allow
+NGINX to assess End User’s claim and, at NGINX's sole discretion, to provide
+alternatives that reduce any adverse impact on NGINX's intellectual property
+or other rights; (c) allow access or permit use of the Software by any third
+party except authorized third-party contractors solely to provide services
+to End User, provided that End User shall be liable for all acts and
+omissions of such authorized third-party contractors; (d) modify or create
+derivative works based upon the Software; (e) disclose the results of any
+benchmark test of the Software to any third party; or (f) change any
+proprietary rights notices which appear in the Software.
+
+2.2. Software Transfer.  Upon written consent from NGINX, which will not be
+unreasonably withheld, End User may permanently transfer all of its rights
+under this Agreement; provided that the recipient agrees to the terms of
+this Agreement.
+
+2.3. High Risk Activities.  The Software is not intended for use in
+hazardous environments requiring fail-safe performance (such as, without
+limitation, nuclear facilities, aircraft navigation or communication
+systems, air traffic control, medical device and life support machines,
+or weapon systems) in which the failure of the Software could lead to death,
+personal injury or physical and environmental damage ("High Risk
+Activities").  Accordingly, this Agreement excludes any High Risk Activities
+and End User agrees not to use the Software in connection with High Risk
+Activities.
+
+3. Ownership
+
+The Software is protected by copyright laws and international copyright
+treaties, as well as other intellectual property laws and treaties.  NGINX
+owns all right, title and interest in the copyrights, patents and all other
+intellectual property rights in and to the Software and any accompanying
+printed materials.
+
+4. Open source programs
+
+Components of the Software may be licensed under open source licenses and
+may apply to End User's use of the Software.
+
+5. Trademarks
+
+The mark "NGINX" is trademark of NGINX.  NGINX's failure to list a trademark
+in this Section shall not constitute a waiver of any trademark rights.
+All other trademarks in the Software not owned by NGINX are the property
+of their respective owners.
+
+6. Disclaimer and Warranty
+
+6.1. DISCLAIMER OF WARRANTIES.  THE SOFTWARE IS PROVIDED "AS IS" WITHOUT
+WARRANTY OF ANY KIND AND NGINX EXPRESSLY DISCLAIMS ALL WARRANTIES, EXPRESS
+OR IMPLIED OR ARISING OUT OF A COURSE OF CONDUCT OR COURSE OF DEALING,
+INCLUDING ALL WARRANTIES OF TITLE, PERFORMANCE, USE, MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT AND THE ABSENCE OF LATENT
+OR OTHER DEFECTS, WHETHER OR NOT DISCOVERABLE.  NGINX MAKES NO WARRANTY
+REGARDING NON-INTERRUPTION OF USE.  NO ORAL OR WRITTEN STATEMENT PROVIDED BY
+NGINX SHALL CREATE ANY WARRANTY.
+
+6.2. LIMITATION OF LIABILITY.  THE ENTIRE RISK AS TO THE RESULTS AND
+PERFORMANCE OF THE SOFTWARE IS ASSUMED BY END USER.  NGINX SHALL NOT HAVE ANY
+LIABILITY TO END USER OR ANY OTHER PARTY FOR ANY INDIRECT, INCIDENTAL,
+SPECIAL, OR CONSEQUENTIAL DAMAGES WHATSOEVER, INCLUDING, BUT NOT LIMITED TO,
+LOSS OF REVENUE, PROFIT OR OPPORTUNITY, LOST OR DAMAGED DATA OR OTHER
+COMMERCIAL OR ECONOMIC LOSS, EVEN IF NGINX HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES, OR THEY ARE FORESEEABLE.  NGINX'S MAXIMUM
+AGGREGATE LIABILITY RELATING TO THIS AGREEMENT OR THE SOFTWARE SHALL NOT
+EXCEED THE AMOUNT PAID BY END USER FOR THE SOFTWARE.
+
+6.3. ALLOCATION.  THE PROVISIONS OF THIS SECTION ALLOCATE RISKS UNDER THIS
+AGREEMENT BETWEEN NGINX AND END USER.  NGINX'S LICENSING FEES FOR THE
+SOFTWARE REFLECT THIS ALLOCATION OF RISKS AND LIMITATION OF LIABILITY.
+THE FOREGOING LIMITATIONS, EXCLUSIONS AND DISCLAIMERS APPLY TO THE MAXIMUM
+EXTENT PERMITTED BY APPLICABLE LAW, EVEN IF ANY REMEDY FAILS IN ITS
+ESSENTIAL PURPOSE.
+
+6.4. Limitation.  Because some jurisdictions do not allow certain
+disclaimers, exclusions or limitations of warranties, damages or liability,
+the above disclaimers, exclusions or limitations may not apply to End User
+and, therefore, shall apply only to the maximum extent allowed under
+applicable law.
+
+7. Term
+
+This Agreement is effective until terminated.  End User may terminate the
+Agreement at any time by returning or destroying all copies of the Software
+and related documentation.  End User's rights under this Agreement will
+terminate automatically if End User fails to comply with the Agreement.
+Sections 2-8 shall survive such termination.
+
+8. Miscellaneous
+
+8.1. Governing Law.  This Agreement shall be governed by the laws of the
+State of New York, without reference to the principles of conflicts of law.
+The provisions of the Uniform Computerized Information Transaction Act and
+United Nations Convention on Contracts for the International Sale of Goods
+shall not apply to this Agreement.  Any litigation related to this Agreement
+shall be brought in the state or federal courts located in New York,
+New York, and only in those courts and each party irrevocably waives any
+objections to such venue.  Notwithstanding anything to the contrary herein,
+NGINX shall be entitled to seek injunctive or other equitable relief,
+wherever NGINX deems appropriate in any jurisdiction, in order to preserve
+or enforce NGINX's rights for any breach or threatened breach of this
+Agreement.
+
+8.2. Severability.  Every term, condition or provision of this Agreement is
+severable from the others.  If a court or an arbitrator of competent
+jurisdiction holds any term, condition or provision of this Agreement to be
+invalid, unenforceable or illegal in whole or in part for any reason,
+the validity and enforceability of the remaining terms, conditions or
+provisions, or portions of them, will not be affected.
+
+8.3. Confidentiality.  Except as expressly allowed by this Agreement,
+End User will not use or disclose any Software or related technology, idea,
+algorithm or information ("Confidential Information") except to the extent
+End User can document that it is generally available for use and disclosure
+by the public without charge or license.  End User shall hold the
+Confidential Information in trust and confidence and avoid the disclosure or
+release thereof to any other person or entity by using the same degree of
+care as it uses to avoid unauthorized use, disclosure, or dissemination of
+its own Confidential Information of a similar nature, but not less than
+reasonable care.  End User may disclose Confidential Information as required
+to comply with binding orders of governmental entities that have
+jurisdiction over it; provided that End User gives NGINX reasonable written
+notice to allow NGINX to seek a protective order or other appropriate
+remedy, discloses only such Confidential Information as is required by the
+governmental entity, and uses commercially reasonable efforts to obtain
+confidential treatment for any Confidential Information disclosed.  End User
+recognizes and agrees that there is no adequate remedy at law for a breach
+of this Section, that such a breach would irreparably harm NGINX and that
+NGINX is entitled to equitable relief (without need to post a bond) with
+respect to any such breach or potential breach in addition to any other
+remedies.
+
+8.4. Indemnity.  End User shall defend, indemnify and hold harmless NGINX,
+and its officers, directors, employees and agents (the "NGINX Indemnitees"),
+from and against all suits, claims, demands, losses, liabilities, damages
+and expenses (including reasonable attorneys' fees and costs) that the NGINX
+Indemnitees may suffer or incur in connection with: (i) any third party
+claim arising from End User's breach of this Agreement; and (ii) any
+infringement by End User of NGINX's intellectual property rights in the
+Software.
+
+8.5. Entire Agreement and Waiver.  The Agreement is the sole, final and
+entire agreement between the parties with respect to the subject matter
+hereof, may only be amended in writing signed by both parties.  A failure
+or delay in enforcing any provisions, exercising any option or requiring
+performance, be construed to be a waiver by NGINX.
+
+8.6. Marketing.  NGINX may use End User's name and company logo on its
+customer list and web site, and link to End User's web site.
+
+8.7. Independent Contractor.  The relationship of the parties is that of
+independent contractors.  Neither party will be deemed to be the legal
+representative of the other nor will it have any right to bind the other
+party to any contract or commitment.  This Agreement does not, and will not,
+be construed to create an employer-employee, agency, joint venture or
+partnership relationship between the parties.  Each party agrees to assume
+complete responsibility for its own employees regarding federal or state
+laws, including employers' liability and tax withholding, worker's
+compensation, social security, unemployment insurance, and OSHA requirements.
+
+8.8. Notices.  All notices must be in writing and will be effective three
+(3) days after the date sent to each party's corporate headquarters.
+
+8.9. Audit.  During the term of this Agreement and for one (1) year
+following termination or expiration (but no more than once in a calendar
+year), NGINX and its auditors may inspect End User’s records relating to its
+reproduction and use of the Software for the purposes of verifying End User's
+compliance with this Agreement.  End User shall cooperate fully with NGINX
+and its auditors in conducting audits and provide reasonable assistance.
+If an underpayment is discovered, End User shall promptly pay such amount
+and End User shall reimburse NGINX for the cost of the audit.
+
+8.10. Compliance.  End User warrants that it will comply with all applicable
+laws and regulations related to its performance under this Agreement, and that
+(i) it is not registered, located or domiciled in a location that is
+subject to U.S. embargoes or trade sanctions; (ii) it and its personnel are
+not on any list of persons or entities with whom any U.S. person or entity
+is prohibited from conducting business, including without limitation the
+Denied Persons List, the United Nations Security Council Committee List, and
+the Specially Designated Nationals List of Foreign Assets Control; and (iii)
+the Software will not be used in the design, development, stockpiling,
+production or use of nuclear, chemical or biological weapons or missiles.
+
+
+And other OSS software is include below:
+
+At the release moment of this document, there are three versions of NGINX Plus package
+in distribution:
+? NGINX Plus (package name is nginx-plus)
+? NGINX Plus Lua (package name is nginx-plus-lua)
+? NGINX Plus Extras (package name is nginx-plus-extras)
+? NGINX Plus SMS (package name is nginx-plus-sms)
+These distributions contain a di
+erent set of various open source software components
+described below.
+Open source components included in NGINX Plus, NGINX Plus Lua, NGINX Plus Extras
+and NGINX Plus SMS are:
+? nginx/OSS, distributed under 2-clause BSD license.
+Copyright © 2002-2014 Igor Sysoev
+Copyright © 2011-2014 Nginx, Inc.
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modi 
+cation,
+are permitted provided that the following conditions are met:
+1. Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS
+\AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR ANY
+DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+273
+APPENDIX C. LEGAL NOTICES
+? MurmurHash algorithm, distributed under MIT license.
+Copyright © Austin Appleby
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation  
+les (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the following
+conditions:
+The above copyright notice and this permission notice shall be included in all copies
+or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Open source components included in NGINX Plus Lua and NGINX Plus Extras are:
+? Nginx Development Kit (NDK) module, distributed under BSD license.
+Copyright © Marcus Clyne
+? lua-nginx-module, distributed under 2-clause BSD license.
+Copyright © 2009-2014, by Xiaozhe Wang (chaoslawful)
+Copyright © 2009-2014, by Yichun "agentzh" Zhang (à¦%)
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modi 
+cation,
+are permitted provided that the following conditions are met:
+{ Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+{ Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+Open source components included in NGINX Plus Extras are:
+? headers-more-nginx-module, distributed under 2-clause BSD license.
+Copyright © 2009-2014, Yichun "agentzh" Zhang (à¦%)
+Copyright © 2010-2013, Bernd Dorn
+This module is licensed under the terms of the BSD license.
+Redistribution and use in source and binary forms, with or without modi 
+cation,
+are permitted provided that the following conditions are met:
+Nginx, Inc. p.274 of 282
+APPENDIX C. LEGAL NOTICES
+{ Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+{ Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+? set-misc-nginx-module, distributed under 2-clause BSD license.
+Copyright © 2009-2014, Yichun "agentzh" Zhang (à¦%)
+This module is licensed under the terms of the BSD license.
+Redistribution and use in source and binary forms, with or without modi 
+cation,
+are permitted provided that the following conditions are met:
+{ Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+{ Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+? Phusion Passenger module for nginx (open source)
+Copyright © 2010-2013 Phusion
+Permission is hereby granted, free of charge, to any person obtaining a copy of this
+software and associated documentation  
+les (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the following
+conditions:
+The above copyright notice and this permission notice shall be included in all copies
+or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+Nginx, Inc. p.275 of 282
+APPENDIX C. LEGAL NOTICES
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Open source components included in NGINX Plus SMS are:
+? nginx-rtmp-module, distributed under 2-clause BSD license.
+Copyright © 2012-2014, Roman Arutyunyan
+All rights reserved.
+Redistribution and use in source and binary forms, with or without modi 
+cation,
+are permitted provided that the following conditions are met:
+{ Redistributions of source code must retain the above copyright notice, this list
+of conditions and the following disclaimer.
+{ Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
+OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.

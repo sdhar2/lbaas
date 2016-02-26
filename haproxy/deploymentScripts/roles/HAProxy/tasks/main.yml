@@ -1,0 +1,56 @@
+---
+    - name: start elk ELB check for AWS
+      shell: nohup ./aws_elb_check "haproxy" 4005 >/dev/null 2>&1 &
+      when: AWS == "Y"
+      ignore_errors: true
+    - name: start maas ELB check for AWS
+      shell: nohup ./aws_elb_check "haproxy" 4006 >/dev/null 2>&1 &
+      when: AWS == "Y"
+      ignore_errors: true
+    - name: copy the haproxy keepalived template file
+      copy: src=keepalived.conf.haproxy.tmpl dest=/etc/keepalived/keepalived.conf.haproxy.tmpl mode=0755
+    - name: update the priority ip on config template file
+      command: sed -i "s/PRIORITY_MACRO/{{ansible_eth0.ipv4.address.split('.')[3]}}/g" /etc/keepalived/keepalived.conf.haproxy.tmpl      
+    - name: look up the ip of the VIP
+      shell: host elk | cut -d" " -f4 | cut -d. -f4  
+      register: vrid
+    - name: update the virtual router id on config template file
+      command: sed -i "s/VRID_MACRO/{{vrid.stdout}}/g" /etc/keepalived/keepalived.conf.haproxy.tmpl            
+    - name: copy the HAProxy compose file
+      copy: src=haproxy-compose.yml dest=/arris/compose/haproxy-compose.yml mode=0755
+    - name: update the host ip on compose file
+      command: sed -i "s/HOST_IP_MACRO/{{ansible_eth0.ipv4.address}}/g" /arris/compose/haproxy-compose.yml
+    - name: update the host name on compose file
+      command: sed -i "s/HOST_NAME_MACRO/{{ansible_hostname}}/g" /arris/compose/haproxy-compose.yml
+    - name: Grab iptables rules for survey of firewall (INPUT rules only)
+      shell: iptables -n --list INPUT
+      register: iptablesinputtablerules
+      always_run: yes
+    - name: punch the holes in the firewall
+      command: iptables -I INPUT -p tcp --dport {{ item }} -j ACCEPT
+      when: iptablesinputtablerules.stdout.find("dpt:{{ item }} ") == -1
+      with_items:
+         - 514
+         - 15672
+         - 25672
+         - 443
+         - 444
+         - 9000
+         - 9200
+         - 9500
+         - 8775
+         - 8777
+         - 7507
+      notify: save iptables
+    - name: start the compose file
+      command: docker-compose -f /arris/compose/haproxy-compose.yml pull --allow-insecure-ssl
+      async: 180
+    - name: start the compose file
+      command: docker-compose -f /arris/compose/haproxy-compose.yml up -d
+    - name: kill the old status checker script if there is one
+      shell: killall haproxy_status_checker.sh
+      ignore_errors: true
+    - name: start status checker script
+      shell: nohup /usr/sbin/haproxy_status_checker.sh  &
+    - name: keepalived
+      service: name=keepalived state=restarted

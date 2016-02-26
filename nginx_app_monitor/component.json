@@ -1,0 +1,9 @@
+[
+	{
+        "componentName":    "nginx-app-monitor",
+        "componentDescr":   "ARRIS Cloud Platform: NginxPlus Application Monitor",
+        "containerName":    "arrs/arrs-cloud-base-nginx-app-monitor",
+        "componentVersion": "2.0.0.0",
+        "installFileBase":  "arrs-cloud-loadbalancer-nginx-appmonitor"
+	}
+]

@@ -1,0 +1,82 @@
+haproxy:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-haproxy:1.3.0.14
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"
+  ports:
+   - "514:514"
+   - "5672:5672"
+   - "15672:15672"
+   - "443:443"
+   - "444:444"
+   - "9000:9000"
+   - "9200:9200"
+   - "9500:9500"
+  volumes: 
+   - /opt/etcd/config:/opt/etcd/config
+   - /var/opt/haproxy/log:/var/log/haproxy 
+
+appObserverHaproxy:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-app-observer:2.0.0.3
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"
+  ports:
+   - "8775:8775"
+   - "8777:8777"
+  environment:
+   SECURE_PORT: 8775
+   NON_SECURE_PORT: 8777
+   PRODUCT_NAME: ACP-HAPROXY
+   APP_WEBSERVICE_FQDN: HOST_IP_MACRO
+   APP_WEBSERVICE_PORT: 7507
+  volumes:
+   - /var/opt/app-observer-haproxy/config:/opt/app-observer/conf/external
+   - /var/opt/app-observer-haproxy/logs:/opt/app-observer/logs
+
+haproxyapp:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-haproxy-app-monitor:1.2.0.10
+  stdin_open: true
+  tty: true
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"
+  ports:
+   - "7507:7507"
+  environment:
+   LISTEN_PORT: 7507 
+   APP_OBSERVER_PORT: 8777 
+   HOST_IP: HOST_IP_MACRO
+   HOST_NAME: HOST_NAME_MACRO
+  volumes:
+   - /usr/sbin:/usr/local/sbin
+   - /var/log/app_monitor/haproxy:/tmp 
+   - /var/opt/app-monitor-haproxy/status_monitor/logs:/opt/status_monitor/logs 
+   - /var/opt/app-monitor-haproxy/perf_monitor/logs:/opt/perf_monitor/logs 
+
+keymanager:
+  image: dockerrepo:5000/arrs/arrs-cloud-base-keymanager:1.0.0.9
+  stdin_open: true
+  tty: true
+  restart: always
+  privileged: true
+  log_driver: "json-file"
+  log_opt:
+   max-size: "100m"
+   max-file: "10"
+  environment:
+  - HOST_IP=HOST_IP_MACRO
+  - HOST_NAME=HOST_NAME_MACRO
+  volumes:
+   - /var/log:/tmp
+  volumes_from:
+  - haproxy 

@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "paths": [ "/var/opt/app-observer/logs/log.txt*" ],
+      "fields": {
+                "type": "appObserverLog",
+                "application": "appObserver",
+                "source": "$NODE_NAME",
+                "logFormat": "advisorLogFormat"
+      }
+    },
+    {
+      "paths": [ "/var/log/nginx/error.log" ],
+      "fields": {
+	        "type": "nginxErrorLog",
+	        "application": "nginx",
+	        "source": "$NODE_NAME",
+	        "logFormat": "nginxLogFormat"
+      }
+    }
+  ]
+}

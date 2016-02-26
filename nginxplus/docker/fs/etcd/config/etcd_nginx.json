@@ -1,0 +1,20 @@
+[
+{
+	 "Static":
+	  [
+	    {
+		"key": "/config/advisor/loadbalancer@$VarHostName",
+		"value": "$VarHostIP:8475"    
+	    },
+	    {
+        "key": "/productGroups/lbaas/loadbalancer@$VarHostName",
+        "value": "$VarHostIP"
+        }
+	  ],
+	  "KeepAlive" :
+	  [
+	    {
+	    }
+	  ]
+	}
+] 

@@ -1,0 +1,94 @@
+---
+    - name: start nginx ELB check for AWS
+      shell: nohup ./aws_elb_check "ngingx" 4007 >/dev/null 2>&1 &
+      when: AWS == "Y"
+      ignore_errors: true
+      tags: swarm
+    - name: copy the nginx keepalived template file
+      copy: src=keepalived.conf.nginx.tmpl dest=/etc/keepalived/keepalived.conf.nginx.tmpl mode=0755
+      when: single_vm_deployment == "no"
+    - name: update the priority ip on config template file
+      command: sed -i "s/PRIORITY_MACRO/{{ansible_eth0.ipv4.address.split('.')[3]}}/g" /etc/keepalived/keepalived.conf.nginx.tmpl      
+      when: single_vm_deployment == "no"
+    - name: look up the ip of the VIP
+      shell: host lbaas | cut -d" " -f4 | cut -d. -f4  
+      register: vrid
+    - name: update the virtual router id on config template file
+      command: sed -i "s/VRID_MACRO/{{vrid.stdout}}/g" /etc/keepalived/keepalived.conf.nginx.tmpl            
+      when: single_vm_deployment == "no"
+    - name: Creates directory
+      file: path=/etc/confd state=directory
+    - name: kill confd script
+      shell: pkill -9 startConfd.sh
+      ignore_errors: true
+    - name: Creates cond.d directory
+      file: path=/etc/confd/conf.d state=directory
+    - name: Creates templates directory
+      file: path=/etc/confd/templates state=directory
+    - name: copy confd
+      copy: src=confd dest=/usr/sbin mode=0755
+    - name: copy startConfd
+      copy: src=startConfd.sh dest=/usr/sbin mode=0755
+    - name: remove restart_nginx_docker.sh
+      file: path=/usr/sbin/restart_nginx_docker.sh state=absent
+    - name: copy restart_nginx_docker.sh
+      copy: src=restart_nginx_docker.sh dest=/usr/sbin mode=0755
+    - name: copy updateConfig.sh
+      copy: src=updateConfig.sh dest=/usr/sbin mode=0755
+    - name: copy nginxConfig port update script
+      copy: src=nginxConfig.sh dest=/usr/sbin mode=0755
+    - name: copy nginxConfig files
+      copy: src=nginxconfig.tmpl dest=/etc/confd/templates mode=0755
+    - name: copy nginxConfig files
+      copy: src=nginxconfig.toml dest=/etc/confd/conf.d mode=0755
+    - name: copy the nginx compose file
+      copy: src=nginx-compose.yml dest=/arris/compose/nginx-compose.yml mode=0755
+    - name: copy the nginx compose template file
+      copy: src=nginx-compose.yml.template dest=/arris/compose/nginx-compose.yml.template mode=0755
+    - name: update the host ip on compose file
+      command: sed -i "s/HOST_IP_MACRO/{{ansible_eth0.ipv4.address}}/g" /arris/compose/nginx-compose.yml
+    - name: update the host name on compose file
+      command: sed -i "s/HOST_NAME_MACRO/{{ansible_hostname}}/g" /arris/compose/nginx-compose.yml
+    - name: copy the nginx compose template file
+      copy: src=nginx-compose.yml.template dest=/arris/compose/nginx-compose.yml.template mode=0755
+    - name: update the host ip on compose file
+      command: sed -i "s/HOST_IP_MACRO/{{ansible_eth0.ipv4.address}}/g" /arris/compose/nginx-compose.yml.template
+    - name: update the host name on compose file
+      command: sed -i "s/HOST_NAME_MACRO/{{ansible_hostname}}/g" /arris/compose/nginx-compose.yml.template
+    - name: look up the ELK DNS name
+      shell: nslookup elk | grep "elk" | awk '{ print $2}'
+      register: nslookup
+    - name: update ELK DNS name on compose file
+      command: sed -i "s/ELK_DNSNAME_MACRO/{{nslookup.stdout}}/g" /arris/compose/nginx-compose.yml
+    - name: update ELK DNS name on compose template file
+      command: sed -i "s/ELK_DNSNAME_MACRO/{{nslookup.stdout}}/g" /arris/compose/nginx-compose.yml.template      
+    - name: pull nginx containers
+      command: docker-compose -f /arris/compose/nginx-compose.yml pull --allow-insecure-ssl
+      async: 180
+    - name: update nginx ports
+      shell: /usr/sbin/nginxConfig.sh
+      ignore_errors: true
+    - name: wait for the compose file
+      wait_for: path=/root/tmp
+    - name: start the external confd
+      shell: dummy=$(nohup /usr/sbin/startConfd.sh > /var/log/nginxconfd.log &)
+    - name: Grab iptables rules for survey of firewall (INPUT rules only)
+      shell: iptables -n --list INPUT
+      register: iptablesinputtablerules
+      always_run: yes
+    - name: punch the holes in the firewall
+      command: iptables -I INPUT -p tcp --dport {{ item }} -j ACCEPT
+      when: iptablesinputtablerules.stdout.find("dpt:{{ item }}") == -1
+      with_items:
+         - 8475
+         - 8477
+         - 7504
+      notify: save iptables
+    - name: kill the old status checker script if there is one
+      shell: killall nginx_status_checker.sh
+      ignore_errors: true
+    - name: start status checker script
+      shell: nohup /usr/sbin/nginx_status_checker.sh  &
+    - name: keepalived
+      service: name=keepalived state=restarted
+      when: single_vm_deployment == "no"

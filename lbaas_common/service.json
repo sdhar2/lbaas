@@ -1,0 +1,26 @@
+[
+	{
+	 "serviceName" : "lbaas",
+	 "serviceVersion": "2.0.6",
+	 "serviceReleaseArtifact": "cloud-platform-loadbalancer",
+	 "releasedArtifacts":
+	  [
+	    {
+          "arrs/arrs-cloud-base-haproxy": "2.0.0.2",
+          "arrs/arrs-cloud-base-haproxy-app-monitor": "2.0.0.2",
+       	  "arrs/arrs-cloud-base-nginxplus": "2.0.0.18",
+          "arrs/arrs-cloud-base-nginx-app-monitor": "2.0.0.2",
+          "arrs/arrs-cloud-base-lbaas-api": "1.0.0.33",
+          "arrs/arrs-cloud-base-lbaas-api-app-monitor": "1.0.0.1"
+        }
+	  ],
+	  "releaseDependency":
+	  [
+	    {
+	    	"monaas": "2.0.0",
+ 		"srdaas": "2.0.0",
+ 		"paas" : "2.0.0"
+        }
+	  ]
+	}
+]

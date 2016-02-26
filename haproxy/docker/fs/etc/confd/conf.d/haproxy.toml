@@ -1,0 +1,8 @@
+[template]
+src = "haproxy.conf.tmpl"
+dest = "/etc/confd/haproxy.conf"
+keys = [
+    "/maas",
+    "/laas"
+]
+reload_cmd = "sh /etc/confd/update_config.sh"

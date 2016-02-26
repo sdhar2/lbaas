@@ -1,0 +1,20 @@
+[
+{
+	 "Static":
+	  [
+	    {
+		"key": "/config/advisor/loadbalancer$HostIP",
+		"value": "$HostIP:8475"    
+	    },
+	    {
+        "key": "/productGroups/lbaas/loadbalancer$HostIP",
+        "value": "$HostIP"
+        }
+	  ],
+	  "KeepAlive" :
+	  [
+	    {
+	    }
+	  ]
+	}
+] 
